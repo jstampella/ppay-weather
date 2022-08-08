@@ -31,6 +31,7 @@ module.exports = {
 		'spaced-comment': 'error',
 		quotes: ['error', 'single'],
 		'no-duplicate-imports': 'error',
+		'@typescript-eslint/no-explicit-any': ['off'],
 		'@typescript-eslint/no-empty-interface': [
 			'error',
 			{
