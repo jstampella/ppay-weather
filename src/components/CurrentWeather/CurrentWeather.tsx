@@ -59,7 +59,7 @@ const CurrentWeather: React.FC = () => {
 
 				<CurrentWeatherInfo>
 					<FeelsLike>
-						Feels like <Temperature value={weather.main.feels_like} />
+						Sensacion Termica: <Temperature value={weather.main.feels_like} />
 						<sup>&deg;</sup>
 					</FeelsLike>
 					<HighLowContainer>
@@ -77,14 +77,14 @@ const CurrentWeather: React.FC = () => {
 					<InfoRow>
 						<div>
 							{/* <HumidityIcon />  */}
-							Humidity
+							Humedad
 						</div>
 						<span>{weather.main.humidity}%</span>
 					</InfoRow>
 					<InfoRow>
 						<div>
 							{/* <WindIcon />  */}
-							Wind
+							Viento
 						</div>
 						<span>
 							{degreeType === TempUnit.CELCIUS
@@ -96,7 +96,7 @@ const CurrentWeather: React.FC = () => {
 					<InfoRow>
 						<div>
 							{/* <PressureIcon />  */}
-							Pressure
+							Presion
 						</div>
 						<span>{weather.main.pressure}hPa</span>
 					</InfoRow>
