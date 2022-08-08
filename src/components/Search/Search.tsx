@@ -52,7 +52,7 @@ const Search: React.FC = () => {
 				element={SearchInput}
 				debounceTimeout={300}
 				onChange={onSearchInputChanged}
-				placeholder='Search for location'
+				placeholder='Buscar por Localizacion'
 			/>
 			<LocationButton
 				onClick={() => {

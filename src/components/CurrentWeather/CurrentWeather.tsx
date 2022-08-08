@@ -47,7 +47,7 @@ const CurrentWeather: React.FC = () => {
 	return (
 		<WeatherContainer>
 			<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-				<SectionTitle>Current Weather</SectionTitle>
+				<SectionTitle>Clima Actual</SectionTitle>
 				<div>
 					<ToggleSwitch onClick={() => dispatch(changeTempUnit())} />
 				</div>

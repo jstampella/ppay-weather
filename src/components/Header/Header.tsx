@@ -3,6 +3,7 @@ import {
 	Title,
 	HeaderIconsContainer,
 	GithubLink,
+	AppIcon,
 } from './styled';
 import { ReactComponent as GithubIcon } from '../../assets/github.svg';
 import DarkModeToggle from 'react-dark-mode-toggle';
@@ -20,7 +21,9 @@ export const Header = () => {
 	const isDarkMode = useSelector((state: AppStore) => state.app.darkMode);
 	return (
 		<HeaderContainer>
-			<Title>Weather - PPAY</Title>
+			<Title>
+				<AppIcon />
+			</Title>
 			<HeaderIconsContainer>
 				<DarkModeToggle
 					checked={isDarkMode}
