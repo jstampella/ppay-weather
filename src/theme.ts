@@ -58,7 +58,7 @@ export const lightTheme: Theme = {
 };
 
 export const darkTheme: Theme = {
-	appTitleColor: '#2F5D8A',
+	appTitleColor: '#ffe901',
 	backgroundImage: darkBg,
 	backgroundGradient: {
 		color1: '#031027',
