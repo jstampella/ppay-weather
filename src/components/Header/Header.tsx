@@ -4,6 +4,11 @@ import { AppStore } from '../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleDarkMode } from '../../store/reducers/appReducer';
 
+/**
+ * Componente que almacena el Header de la pagina
+ * TITULO, BOTON TEMA, Link a Github
+ * @returns Component JSX
+ */
 export const Header = () => {
 	const dispatch = useDispatch();
 	const isDarkMode = useSelector((state: AppStore) => state.app.darkMode);
