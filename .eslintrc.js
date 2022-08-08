@@ -31,5 +31,11 @@ module.exports = {
 		'spaced-comment': 'error',
 		quotes: ['error', 'single'],
 		'no-duplicate-imports': 'error',
+		'@typescript-eslint/no-empty-interface': [
+			'error',
+			{
+				allowSingleExtends: true,
+			},
+		],
 	},
 };
