@@ -4,7 +4,6 @@ import { ReactComponent as HazeIcon } from '../../assets/weather/haze.svg';
 import { ReactComponent as HeavyRainIcon } from '../../assets/weather/heavy-rain.svg';
 import { ReactComponent as PartlyCloudyIcon } from '../../assets/weather/partly-cloudy.svg';
 import { ReactComponent as RainIcon } from '../../assets/weather/rain.svg';
-import { ReactComponent as MoonIcon } from '../../assets/weather/moon.svg';
 import { ReactComponent as MoonCloudyIcon } from '../../assets/weather/moon-cloudy.svg';
 import { ReactComponent as SleetIcon } from '../../assets/weather/sleet.svg';
 import { ReactComponent as SnowIcon } from '../../assets/weather/snow.svg';
@@ -33,7 +32,7 @@ const WeatherIcon: React.FC<IWeatherIconProps> = props => {
 			Icon = PartlyCloudyIcon;
 			break;
 		case 803:
-			Icon = SunnyIcon;
+			Icon = CloudyIcon;
 			break;
 		case 804:
 			Icon = CloudyIcon;
