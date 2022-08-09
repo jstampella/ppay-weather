@@ -63,7 +63,7 @@ const initialState: WeatherState = {
 			day: '',
 			temp_max: 0,
 			temp_min: 0,
-			icon: 0,
+			icon: '',
 			list: [
 				{
 					dt: 0,

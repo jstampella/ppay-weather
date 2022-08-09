@@ -31,6 +31,10 @@ const Search: React.FC = () => {
 		});
 	}, [searchTerm]);
 
+	useEffect(() => {
+		if (!showSuggestions) setSearchTerm('');
+	}, [showSuggestions]);
+
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const onSearchInputChanged = (e: any) => {
 		setSearchTerm(e.target.value);
@@ -49,6 +53,7 @@ const Search: React.FC = () => {
 		<SearchElement>
 			<SearchIcon />
 			<DebounceInput
+				value={searchTerm}
 				element={SearchInput}
 				debounceTimeout={300}
 				onChange={onSearchInputChanged}
