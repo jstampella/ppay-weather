@@ -23,6 +23,7 @@ export const CurrentWeatherContainer = styled.div`
 `;
 export const CurrentWeatherStatus = styled.div`
 	display: flex;
+	flex-wrap: wrap;
 	flex-direction: column;
 	margin: 2rem 1.5rem;
 	width: 25rem;

@@ -13,6 +13,7 @@ export const Title = styled.div`
 	color: ${({ theme }) => theme.appTitleColor};
 	flex: 1 250px;
 	svg {
+		max-width: 423px;
 		height: auto;
 	}
 `;
