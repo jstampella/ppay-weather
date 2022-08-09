@@ -13,8 +13,6 @@ const Forecast: React.FC = () => {
 		isInitial: state.app.isInitial,
 		forecast: state.weather.ForecastCustom,
 	}));
-
-	if (isInitial) return <></>;
 	const [activeIndex, setActiveIndex] = useState(null);
 	const clickHandler = (d: any) => {
 		if (d === activeIndex) {
@@ -23,13 +21,15 @@ const Forecast: React.FC = () => {
 			setActiveIndex(d);
 		}
 	};
+
+	if (isInitial) return <></>;
 	return (
 		<ForecastContainer>
 			<SectionTitle>Clima Extendido</SectionTitle>
 			<>
 				{forecast.map((item: ForecastCustom, i) => {
 					return (
-						<>
+						<div key={i}>
 							<ForecastItem key={i} day={item.day} list={item.list} />
 							<div onClick={() => clickHandler(i)}>Expandad</div>
 							{activeIndex === i ? (
@@ -39,7 +39,7 @@ const Forecast: React.FC = () => {
 									})}
 								</ActiveTab>
 							) : null}
-						</>
+						</div>
 					);
 				})}
 
