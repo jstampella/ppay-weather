@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppStore } from '../../store/store';
 import { changeTempUnit } from '../../store/reducers/appReducer';
 import { kmToMile, TempUnit } from '../../utils/unitConversion';
 import ToggleSwitch from '../ui/ToggleSwitch/ToggleSwitch';
+
 // Icons
 import { ReactComponent as HighIcon } from '../../assets/high-icon.svg';
 import { ReactComponent as HumidityIcon } from '../../assets/humidity-icon.svg';
@@ -22,25 +22,16 @@ import {
 	WeatherContainer,
 	WeatherDegree,
 } from './styled';
+
 import Temperature from './Temperature';
 import WeatherIcon from './WeatherIcon';
-
 const CurrentWeather: React.FC = () => {
-	const { weather, degreeType, isInitial, isError } = useSelector(
-		(store: AppStore) => ({
-			weather: store.weather.weatherData,
-			degreeType: store.app.tempUnit,
-			isInitial: store.app.isInitial,
-			isError: store.weather.isError,
-		})
-	);
+	const { weather, degreeType, isInitial } = useSelector((store: AppStore) => ({
+		weather: store.weather.weatherData,
+		degreeType: store.app.tempUnit,
+		isInitial: store.app.isInitial,
+	}));
 	const dispatch = useDispatch();
-
-	useEffect(() => {
-		if (isError) {
-			console.log('Ocurrio un error al obtener los datos');
-		}
-	}, [isError]);
 
 	if (isInitial) return <></>;
 
