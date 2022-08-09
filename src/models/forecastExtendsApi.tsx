@@ -4,7 +4,7 @@ export interface ForecastCustom {
 	day: string;
 	temp_min: number;
 	temp_max: number;
-	icon: number;
+	icon: string;
 	list: List[];
 }
 

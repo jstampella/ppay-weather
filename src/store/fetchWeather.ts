@@ -43,7 +43,6 @@ export const transformWeatherData = (
 	weather: WeatherAPI;
 	newForecast: ForecastCustom[];
 } => {
-	console.log(res);
 	const weather = res[0] as WeatherAPI;
 	const forecast = res[1] as ForecastExtends;
 	const newForecast: ForecastCustom[] = [];
@@ -60,7 +59,7 @@ export const transformWeatherData = (
 	let fecha = '';
 	let temMax = 0;
 	let temMin = 100;
-	let icon = 0;
+	let icon = '';
 	// if (day !== item.dt_txt.split(' ')[0]
 	forecast.list.forEach((i: ListExtend) => {
 		if (fecha !== i.dt_txt.split(' ')[0] && days.length > 0) {
@@ -85,7 +84,7 @@ export const transformWeatherData = (
 		fecha = i.dt_txt.split(' ')[0];
 		temMax = i.main.temp_max > temMax ? i.main.temp_max : temMax;
 		temMin = i.main.temp_min < temMin ? i.main.temp_min : temMin;
-		icon = i.weather[0].id;
+		icon = i.weather[0].icon;
 	});
 	if (days.length > 0) {
 		newForecast.push({

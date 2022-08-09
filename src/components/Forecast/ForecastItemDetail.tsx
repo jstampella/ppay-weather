@@ -9,7 +9,11 @@ const ForecastItemDetail: React.FC<List> = data => {
 	return (
 		<ForecastItemDetailStlyed>
 			<h6>{formatTime(data.dt_txt.split(' ')[1])}</h6>
-			<WeatherIcon code={data.weather[0].id} />
+			<WeatherIcon
+				big
+				icon={data.weather[0].icon}
+				main={data.weather[0].main}
+			/>
 			<p>{data.weather[0].description}</p>
 			<span>
 				<Temperature value={data.main.temp_max} />
