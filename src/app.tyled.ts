@@ -24,10 +24,11 @@ body {
   justify-content: center;
   min-height: 100vh;
   background: url(${({ theme }) => theme.backgroundImage});
-  background-size: 100%;
+  background-size: cover;
+  background-attachment: fixed;
 }
 #root {
-  max-width: 960px;
+  max-width: 1200px;
   width: 100%;
   margin: auto 0;
   padding: 0 1rem;

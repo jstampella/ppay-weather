@@ -1,7 +1,8 @@
-import lightBg from './assets/daySky.svg';
-import darkBg from './assets/nightSky.svg';
+import lightBg from './assets/bgLight.svg';
+import darkBg from './assets/bgNight.svg';
 
 export interface Theme {
+	color: string;
 	appTitleColor: string;
 	backgroundImage: string;
 	backgroundGradient: {
@@ -30,6 +31,7 @@ export interface Theme {
 }
 
 export const lightTheme: Theme = {
+	color: '#4a6fa1',
 	appTitleColor: '#2F5D8A',
 	backgroundImage: lightBg,
 	backgroundGradient: {
@@ -58,6 +60,7 @@ export const lightTheme: Theme = {
 };
 
 export const darkTheme: Theme = {
+	color: '#c4dbfa',
 	appTitleColor: '#ffe901',
 	backgroundImage: darkBg,
 	backgroundGradient: {
@@ -65,7 +68,7 @@ export const darkTheme: Theme = {
 		color2: '#02101D',
 	},
 	panelBgColor: '#051A33',
-	panelTitleColor: '#216397',
+	panelTitleColor: '#59a7ff',
 	forecastPanelBgColor: 'rgba(5, 26, 51, 0.75)',
 	searchInput: {
 		color: '#5f8bbf',
@@ -73,8 +76,8 @@ export const darkTheme: Theme = {
 	},
 	temperatureSwitch: {
 		backgroundColor: '#1b3657',
-		sliderColor: '#437abd',
-		textColor: '#718cac',
+		sliderColor: '##59a7ff',
+		textColor: '##59a7ff',
 	},
 	searchSuggestion: {
 		backgroundColor: '#0f2744',
