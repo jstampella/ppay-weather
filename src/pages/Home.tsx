@@ -5,6 +5,7 @@ import { AppStore } from '../store/store';
 import Spinner from '../components/ui/Spinner/Spinner';
 import CurrentWeather from '../components/CurrentWeather/CurrentWeather';
 import Footer from '../components/Footer/Footer';
+import Forecast from '../components/Forecast/Forecast';
 /**
  * Componente que almacena el HEADER, SEARCH, CURRENT, FORECAST, FOOTER
  * @returns Component JSX
@@ -19,6 +20,7 @@ const Home = () => {
 			<Header />
 			<Search />
 			<CurrentWeather />
+			<Forecast />
 			<Footer />
 		</>
 	);

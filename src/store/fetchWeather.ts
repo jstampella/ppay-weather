@@ -2,9 +2,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { setIsInitial, setIsLoading } from './reducers/appReducer';
 import { fetchExtendedForecastData, fetchWeatherData } from '../api/weather';
-import { WeatherData, ExtendedForecastData } from '../api/types';
 import { kelvinToCelcius } from '../utils/unitConversion';
-import { getNextSevenDays } from '../utils/dateUtils';
+import { WeatherAPI } from '../models/weatherApi';
+import { getNamberDate } from '../utils/dateUtils';
+import {
+	ForecastCustom,
+	ForecastExtends,
+	List as ListExtend,
+} from '../models/forecastExtendsApi';
 
 export const fetchWeather = createAsyncThunk(
 	'weather/fetchWeather',
@@ -35,13 +40,12 @@ export const fetchWeather = createAsyncThunk(
 export const transformWeatherData = (
 	res: any
 ): {
-	weather: WeatherData;
-	forecast: ExtendedForecastData[];
+	weather: WeatherAPI;
+	newForecast: ForecastCustom[];
 } => {
-	const weather = res[0] as WeatherData;
-	const forecast: ExtendedForecastData[] = [];
-
-	weather.weather = res[0].weather[0];
+	const weather = res[0] as WeatherAPI;
+	const forecast = res[1] as ForecastExtends;
+	const newForecast: ForecastCustom[] = [];
 	weather.main = {
 		...weather.main,
 		temp: kelvinToCelcius(weather.main.temp),
@@ -51,23 +55,52 @@ export const transformWeatherData = (
 	};
 	weather.wind.speed = Math.round(weather.wind.speed * 3.6);
 
-	const next7Days = getNextSevenDays();
-	res[1].list.forEach((i: any, index: number) => {
-		forecast.push({
-			day: next7Days[index],
-			temp: {
+	let days: ListExtend[] = [];
+	let fecha = '';
+	// if (day !== item.dt_txt.split(' ')[0]
+	forecast.list.forEach((i: ListExtend) => {
+		if (fecha !== i.dt_txt.split(' ')[0] && days.length > 0) {
+			newForecast.push({
+				day: getNamberDate(i.dt_txt.split(' ')[0]),
+				list: days,
+			});
+			days = [];
+		} else {
+			fecha = i.dt_txt.split(' ')[0];
+			i.main = {
+				...i.main,
+				temp: kelvinToCelcius(i.main.temp),
+				feels_like: kelvinToCelcius(i.main.feels_like),
 				temp_max: kelvinToCelcius(i.main.temp_max),
 				temp_min: kelvinToCelcius(i.main.temp_min),
-			},
-			weather: {
-				id: i.weather[0].id,
-				main: i.weather[0].main,
-			},
-		});
+			};
+			i.wind.speed = Math.round(i.wind.speed * 3.6);
+			days.push(i);
+		}
+		// 	const itemN = i;
+		// 	itemN.main = {
+		// 		...itemN.main,
+		// 		temp: kelvinToCelcius(itemN.main.temp),
+		// 		feels_like: kelvinToCelcius(itemN.main.feels_like),
+		// 		temp_max: kelvinToCelcius(itemN.main.temp_max),
+		// 		temp_min: kelvinToCelcius(itemN.main.temp_min),
+		// 	};
+		// 	itemN.wind.speed = Math.round(itemN.wind.speed * 3.6);
+		// 	if (fecha !== itemN.dt_txt.split(' ')[0] && fecha !== '') {
+		// 		newForecast.push({
+		// 			day: fecha,
+		// 			list: days,
+		// 		});
+		// 		fecha = '';
+		// 		days.slice();
+		// 	} else {
+		// 		fecha = itemN.dt_txt.split(' ')[0];
+		// 		days.push(i);
+		// 	}
 	});
-
+	console.log(newForecast);
 	return {
 		weather,
-		forecast,
+		newForecast,
 	};
 };
