@@ -61,6 +61,9 @@ const initialState: WeatherState = {
 	ForecastCustom: [
 		{
 			day: '',
+			temp_max: 0,
+			temp_min: 0,
+			icon: 0,
 			list: [
 				{
 					dt: 0,
@@ -116,7 +119,6 @@ const weatherSlice = createSlice({
 			.addCase(fetchWeather.fulfilled, (state, action) => {
 				const res = transformWeatherData(action.payload);
 				state.weatherData = res.weather;
-				console.log(action.payload);
 				state.ForecastCustom = res.newForecast;
 			})
 			.addCase(fetchWeather.rejected, state => {

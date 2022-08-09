@@ -5,6 +5,7 @@ export const ActiveTab = styled.div`
 	justify-content: center;
 	flex-wrap: wrap;
 	gap: 18px 24px;
+	border-top: 1px dashed ${({ theme }) => theme.panelTitleColor};
 `;
 
 export const ForecastContainer = styled.div`
@@ -18,11 +19,13 @@ export const ForecastContainer = styled.div`
 export const SectionTitle = styled.h6`
 	font-weight: 500;
 	font-size: 1.125rem;
+	text-align: center;
 	color: ${({ theme }) => theme.panelTitleColor};
 `;
 export const Sections = styled.div`
 	display: flex;
-	border: 1px;
+	flex-direction: column;
+	margin: 10px 0;
 	justify-content: space-between;
 	overflow-x: auto;
 
@@ -34,8 +37,42 @@ export const Sections = styled.div`
 export const ForecastItems = styled.div`
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	overflow-x: auto;
+	&:hover {
+		cursor: pointer;
+		> .sub {
+			color: ${({ theme }) => theme.appTitleColor};
+		}
+	}
+	.sub {
+		font-weight: 600;
+		font-size: 2.125rem;
+		@media (max-width: 600px) {
+			font-size: 1.6rem;
+		}
+		color: ${({ theme }) => theme.panelTitleColor};
+	}
+	svg {
+		width: 5rem;
+		height: 5rem;
+		margin: 0.7rem 0;
+		display: block;
+		@media (max-width: 600px) {
+			display: none;
+		}
+	}
 
+	div {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 15px;
+		gap: 15px;
+		font-size: 1.5rem;
+		font-weight: bold;
+		color: ${({ theme }) => theme.panelTitleColor};
+	}
 	> :last-child {
 		margin-right: 0;
 	}
@@ -56,7 +93,7 @@ export const ForecastItemDetailStlyed = styled.div`
 	h6 {
 		font-weight: 600;
 		font-size: 1.125rem;
-		color: #4581c5;
+		color: #469dff;
 	}
 	svg {
 		width: 4rem;
@@ -66,11 +103,11 @@ export const ForecastItemDetailStlyed = styled.div`
 	p {
 		font-weight: 600;
 		font-size: 1.125rem;
-		color: #4a6fa1;
+		color: ${({ theme }) => theme.color};
 	}
 	span {
 		font-size: 1.125rem;
-		color: #4a6fa1;
+		color: ${({ theme }) => theme.color};
 		width: 5rem;
 		text-align: center;
 	}

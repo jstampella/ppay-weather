@@ -43,6 +43,7 @@ export const transformWeatherData = (
 	weather: WeatherAPI;
 	newForecast: ForecastCustom[];
 } => {
+	console.log(res);
 	const weather = res[0] as WeatherAPI;
 	const forecast = res[1] as ForecastExtends;
 	const newForecast: ForecastCustom[] = [];
@@ -57,48 +58,45 @@ export const transformWeatherData = (
 
 	let days: ListExtend[] = [];
 	let fecha = '';
+	let temMax = 0;
+	let temMin = 100;
+	let icon = 0;
 	// if (day !== item.dt_txt.split(' ')[0]
 	forecast.list.forEach((i: ListExtend) => {
 		if (fecha !== i.dt_txt.split(' ')[0] && days.length > 0) {
 			newForecast.push({
-				day: getNamberDate(i.dt_txt.split(' ')[0]),
+				temp_max: temMax,
+				temp_min: temMin,
+				icon: icon,
+				day: getNamberDate(fecha),
 				list: days,
 			});
 			days = [];
-		} else {
-			fecha = i.dt_txt.split(' ')[0];
-			i.main = {
-				...i.main,
-				temp: kelvinToCelcius(i.main.temp),
-				feels_like: kelvinToCelcius(i.main.feels_like),
-				temp_max: kelvinToCelcius(i.main.temp_max),
-				temp_min: kelvinToCelcius(i.main.temp_min),
-			};
-			i.wind.speed = Math.round(i.wind.speed * 3.6);
-			days.push(i);
 		}
-		// 	const itemN = i;
-		// 	itemN.main = {
-		// 		...itemN.main,
-		// 		temp: kelvinToCelcius(itemN.main.temp),
-		// 		feels_like: kelvinToCelcius(itemN.main.feels_like),
-		// 		temp_max: kelvinToCelcius(itemN.main.temp_max),
-		// 		temp_min: kelvinToCelcius(itemN.main.temp_min),
-		// 	};
-		// 	itemN.wind.speed = Math.round(itemN.wind.speed * 3.6);
-		// 	if (fecha !== itemN.dt_txt.split(' ')[0] && fecha !== '') {
-		// 		newForecast.push({
-		// 			day: fecha,
-		// 			list: days,
-		// 		});
-		// 		fecha = '';
-		// 		days.slice();
-		// 	} else {
-		// 		fecha = itemN.dt_txt.split(' ')[0];
-		// 		days.push(i);
-		// 	}
+		i.main = {
+			...i.main,
+			temp: kelvinToCelcius(i.main.temp),
+			feels_like: kelvinToCelcius(i.main.feels_like),
+			temp_max: kelvinToCelcius(i.main.temp_max),
+			temp_min: kelvinToCelcius(i.main.temp_min),
+		};
+		i.wind.speed = Math.round(i.wind.speed * 3.6);
+		days.push(i);
+		fecha = i.dt_txt.split(' ')[0];
+		temMax = i.main.temp_max > temMax ? i.main.temp_max : temMax;
+		temMin = i.main.temp_min < temMin ? i.main.temp_min : temMin;
+		icon = i.weather[0].id;
 	});
-	console.log(newForecast);
+	if (days.length > 0) {
+		newForecast.push({
+			day: getNamberDate(fecha),
+			temp_max: temMax,
+			temp_min: temMin,
+			icon: icon,
+			list: days,
+		});
+		days = [];
+	}
 	return {
 		weather,
 		newForecast,

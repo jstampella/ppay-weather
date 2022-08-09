@@ -1,12 +1,12 @@
 export function getNamberDate(date: string): string {
 	const days = [
-		'Domingo',
 		'Lunes',
 		'Martes',
 		'Miercoles',
 		'Jueves',
 		'Viernes',
 		'Sabado',
+		'Domingo',
 	];
 	const dateConv = new Date(date);
 	return days[dateConv.getDay()].toString();

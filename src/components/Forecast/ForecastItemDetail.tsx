@@ -14,7 +14,7 @@ const ForecastItemDetail: React.FC<List> = data => {
 			<span>
 				<Temperature value={data.main.temp_max} />
 				<sup>&deg;</sup>
-				<small>/</small>
+				<small>/ </small>
 				<Temperature value={data.main.temp_min} />
 				<sup>&deg;</sup>
 			</span>

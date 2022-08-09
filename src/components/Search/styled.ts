@@ -31,7 +31,7 @@ export const SearchInput = styled.input`
 `;
 export const SearchIcon = styled(SearchIconSvg)`
 	margin-left: 1.2rem;
-	fill: #4a6fa1;
+	fill: ${({ theme }) => theme.color};
 `;
 export const LocationButton = styled.button`
 	border: none;
@@ -45,7 +45,7 @@ export const LocationButton = styled.button`
 `;
 export const LocationIcon = styled(LocationIconSvg)`
 	margin-right: 1.2rem;
-	fill: #4a6fa1;
+	fill: ${({ theme }) => theme.color};
 `;
 export const SearchResult = styled.div`
 	display: flex;

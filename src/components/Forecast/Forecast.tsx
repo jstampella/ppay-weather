@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { AppStore } from '../../store/store';
 import ForecastItem from './ForecastItem';
-import { ActiveTab, ForecastContainer, SectionTitle } from './styled';
+import { ActiveTab, ForecastContainer, SectionTitle, Sections } from './styled';
 
 import { ForecastCustom, List } from '../../models/forecastExtendsApi';
 import ForecastItemDetail from './ForecastItemDetail';
@@ -24,64 +24,30 @@ const Forecast: React.FC = () => {
 
 	if (isInitial) return <></>;
 	return (
-		<ForecastContainer>
+		<Sections>
 			<SectionTitle>Clima Extendido</SectionTitle>
-			<>
-				{forecast.map((item: ForecastCustom, i) => {
-					return (
-						<div key={i}>
-							<ForecastItem key={i} day={item.day} list={item.list} />
-							<div onClick={() => clickHandler(i)}>Expandad</div>
-							{activeIndex === i ? (
-								<ActiveTab>
-									{item.list.map((data: List, index) => {
-										return <ForecastItemDetail key={index} {...data} />;
-									})}
-								</ActiveTab>
-							) : null}
-						</div>
-					);
-				})}
-
-				{/* {forecast.list.map((item, i) => {
-					return (
+			{forecast.map((item: ForecastCustom, i) => {
+				return (
+					<ForecastContainer key={i} onClick={() => clickHandler(i)}>
 						<ForecastItem
+							temp_max={item.temp_max}
+							temp_min={item.temp_min}
+							icon={item.icon}
 							key={i}
-							day={item.dt_txt}
-							high={item.main.temp_max}
-							low={item.main.temp_min}
-							weatherCode={item.weather[0].id}
-							main={item.weather[0].description}
+							day={item.day}
+							list={item.list}
 						/>
-					);
-					// if (day !== item.dt_txt.split(' ')[0] && items.length > 0) {
-					// 	day = item.dt_txt.split(' ')[0];
-					// 	console.log(items);
-					// 	items.splice(1, items.length);
-					// } else items.push(item);
-					// console.log(item.dt_txt.split(' ')[0]);
-
-					// <Sections>
-
-					// </Sections>
-					// console.log(formatTime(item.dt_txt.split(' ')[1])); // Obtener Hora
-					// if (i < 5)
-					// 	return (
-					// 		<div key={i}>
-					// 			<ForecastItem
-					// 				day={item.dt_txt}
-					// 				high={item.main.temp_max}
-					// 				low={item.main.temp_min}
-					// 				weatherCode={item.weather[0].id}
-					// 				main={item.weather[0].description}
-					// 			/>
-					// 			<div onClick={() => clickHandler(i)}>CLICK</div>
-					// 			{activeIndex === i ? <ActiveTab>Hola</ActiveTab> : null}
-					// 		</div>
-					// 	);
-				})} */}
-			</>
-		</ForecastContainer>
+						{activeIndex === i ? (
+							<ActiveTab>
+								{item.list.map((data: List, index) => {
+									return <ForecastItemDetail key={index} {...data} />;
+								})}
+							</ActiveTab>
+						) : null}
+					</ForecastContainer>
+				);
+			})}
+		</Sections>
 	);
 };
 

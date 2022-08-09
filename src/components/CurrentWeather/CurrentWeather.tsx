@@ -54,8 +54,10 @@ const CurrentWeather: React.FC = () => {
 			</div>
 			<CurrentWeatherContainer>
 				<CurrentWeatherStatus>
-					<h4>{weather.name}</h4>
-					<div style={{ display: 'flex' }}>
+					<h4>
+						{weather.name}, {weather.sys.country}
+					</h4>
+					<div style={{ display: 'flex', justifyContent: 'center' }}>
 						<WeatherIcon code={weather.weather[0].id} big />
 						<span>
 							<Temperature value={weather.main.temp} />
