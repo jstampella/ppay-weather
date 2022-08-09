@@ -47,7 +47,7 @@ const CurrentWeather: React.FC = () => {
 	return (
 		<WeatherContainer>
 			<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-				<SectionTitle>Current Weather</SectionTitle>
+				<SectionTitle>Clima Actual</SectionTitle>
 				<div>
 					<ToggleSwitch onClick={() => dispatch(changeTempUnit())} />
 				</div>
@@ -56,13 +56,13 @@ const CurrentWeather: React.FC = () => {
 				<CurrentWeatherStatus>
 					<h4>{weather.name}</h4>
 					<div style={{ display: 'flex' }}>
-						<WeatherIcon code={weather.weather.id} big />
+						<WeatherIcon code={weather.weather[0].id} big />
 						<span>
 							<Temperature value={weather.main.temp} />
 							<sup>&deg;</sup>
 						</span>
 					</div>
-					<h6>{weather.weather.description}</h6>
+					<h6>{weather.weather[0].description}</h6>
 				</CurrentWeatherStatus>
 
 				<CurrentWeatherInfo>
