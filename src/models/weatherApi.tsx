@@ -14,6 +14,7 @@ export interface WeatherAPI {
 	id: number;
 	name: string;
 	cod: number;
+	message?: string;
 }
 
 export interface Clouds {
@@ -55,4 +56,9 @@ export interface Wind {
 	speed: number;
 	deg: number;
 	gust: number;
+}
+
+export interface WeatherError {
+	cod: number;
+	message: string;
 }
