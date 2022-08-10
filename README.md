@@ -28,7 +28,11 @@
 
 ## Setup
 
-Cree un archivo llamado **.env** en la raíz del proyecto. Agregue el siguiente código en el archivo.
+npm install
+npm start
+
+npm run lint para validar el codigo
+npm run format para formatear el codigo
 
 ```
 REACT_APP_WEATHER_API_KEY=3408878d6e2171e6ca8c87357c08b56f
