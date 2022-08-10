@@ -7,7 +7,13 @@ module.exports = {
 	},
 	settings: {
 		'import/resolver': {
-			typescript: {},
+			typescript: { alwaysTryTypes: true },
+			node: {
+				extensions: ['.js', '.jsx', '.ts', '.tsx'],
+			},
+		},
+		react: {
+			version: 'detect',
 		},
 	},
 	extends: [
@@ -38,5 +44,6 @@ module.exports = {
 				allowSingleExtends: true,
 			},
 		],
+		'import/extensions': 'off',
 	},
 };
